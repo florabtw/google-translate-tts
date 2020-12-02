@@ -1,6 +1,6 @@
-const languages = (() => {
+const voices = (() => {
   //prettier-ignore
-  const languages = [
+  const voices = [
     { code: "af-ZA",       name: "Afrikaans" },
     { code: "sq",          name: "Albanian" },
     { code: "ar-AE",       name: "Arabic" },
@@ -72,10 +72,10 @@ const languages = (() => {
     return this.find((l) => l.name === name);
   }
 
-  languages.findByCode = findByCode.bind(languages);
-  languages.findByName = findByName.bind(languages);
+  voices.findByCode = findByCode.bind(voices);
+  voices.findByName = findByName.bind(voices);
 
-  return languages;
+  return voices;
 })();
 
-module.exports = languages;
+module.exports = voices;

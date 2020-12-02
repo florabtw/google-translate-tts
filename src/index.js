@@ -1,6 +1,6 @@
-const languages = require("./languages");
+const voices = require("./voices");
 const synthesize = require("./synthesize");
 
-const tts = { languages, synthesize };
+const tts = { synthesize, voices };
 
 module.exports = tts;
