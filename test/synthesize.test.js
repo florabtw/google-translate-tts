@@ -6,7 +6,7 @@ describe("tts", () => {
     let clip;
 
     beforeAll(async () => {
-      clip = await tts.synthesize({ text: "hello", voice: "en" });
+      clip = await tts.synthesize({ text: "hello", voice: "en-US" });
     });
 
     it("should return a Buffer", () => {
