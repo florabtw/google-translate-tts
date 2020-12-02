@@ -3,6 +3,13 @@ google-translate-tts
 
 This package is for using Google Translate to create audio clips in node js.
 
+This library has been updated to work with the [new
+changes](https://github.com/Boudewijn26/gTTS-token/blob/master/docs/november-2020-translate-changes.md)
+to the Translate API introduced by Google in November 2020.
+
+A spiritual successor to [google-tts-api](https://github.com/zlargon/google-tts)
+which worked with the previous Translate API.
+
 ## Installation
 
 `npm install google-translate-tts`
