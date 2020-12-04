@@ -13,5 +13,11 @@
   },
   "scripts": {
     "test": "jest"
-  }
+  },
+  "node-red": {
+    "nodes": {
+      "text-to-speech": "src/index.nodered.js"
+    }
+  },
+  "keywords": ["tts", "text-to-speech", "google", "translate", "node-red"]
 }
