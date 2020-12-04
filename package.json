@@ -1,6 +1,6 @@
 {
   "name": "google-translate-tts",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Text-to-speech using Google Translate",
   "main": "src/index.js",
   "repository": "https://github.com/ncpierson/google-translate-tts",
@@ -19,5 +19,11 @@
       "text-to-speech": "src/index.nodered.js"
     }
   },
-  "keywords": ["tts", "text-to-speech", "google", "translate", "node-red"]
+  "keywords": [
+    "tts",
+    "text-to-speech",
+    "google",
+    "translate",
+    "node-red"
+  ]
 }
