@@ -10,21 +10,21 @@ const synthesize = (() => {
     path: "/_/TranslateWebserverUi/data/batchexecute",
   };
 
-  const body = ({ text, voice }) => {
-    const values = JSON.stringify([text, voice, null, "null"]);
+  const body = ({ slow, text, voice }) => {
+    const values = JSON.stringify([text, voice, slow ? true : null, "null"]);
     const data = JSON.stringify([[["jQ1olc", values, null, "generic"]]]);
     const params = new URLSearchParams({ "f.req": data });
     return params.toString();
   };
 
-  const request = ({ text, voice }) =>
+  const request = (opts) =>
     new Promise((resolve, reject) => {
       const request = https.request(options, (res) => {
         let data = "";
         res.on("data", (chunk) => (data = data + chunk));
         res.on("end", () => resolve(data));
       });
-      request.write(body({ text, voice }));
+      request.write(body(opts));
       request.on("error", reject);
       request.end();
     });
@@ -50,7 +50,7 @@ const synthesize = (() => {
     return Buffer.from(dataArray[0], "base64");
   };
 
-  return ({ text, voice }) => request({ text, voice }).then(toBuffer);
+  return (opts) => request(opts).then(toBuffer);
 })();
 
 module.exports = synthesize;

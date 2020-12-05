@@ -12,6 +12,7 @@
     "prettier": "^2.2.1"
   },
   "scripts": {
+    "tts": "scripts/tts.sh",
     "test": "jest"
   },
   "node-red": {
@@ -19,11 +20,5 @@
       "text-to-speech": "src/index.nodered.js"
     }
   },
-  "keywords": [
-    "tts",
-    "text-to-speech",
-    "google",
-    "translate",
-    "node-red"
-  ]
+  "keywords": ["tts", "text-to-speech", "google", "translate", "node-red"]
 }
