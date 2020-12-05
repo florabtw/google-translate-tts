@@ -9,7 +9,9 @@
         inputs: 1,
         outputs: 1,
         icon: "feed.svg",
-        label: () => this.name || "text-to-speech",
+        label: function () {
+            return this.name || "text-to-speech";
+        },
     });
 </script>
 
