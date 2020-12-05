@@ -12,17 +12,21 @@ which worked with the previous Translate API.
 
 ## Installation
 
-`npm install google-translate-tts`
+```
+npm install google-translate-tts
+```
 
 or
 
-`yarn add google-translate-tts`
+```
+yarn add google-translate-tts
+```
 
 ## Usage
 
 Find a voice to use:
 
-```
+```js
 const tts = require('google-translate-tts');
 
 // lookup by name
@@ -43,7 +47,7 @@ console.log(tts.voices);
 
 Download an audio clip:
 
-```
+```js
 const fs = require('fs');
 const tts = require('google-translate-tts');
 
