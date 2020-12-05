@@ -38,11 +38,12 @@ const voice = tts.voices.findByCode('en-US');
 // an array of all voices
 console.log(tts.voices);
 
-// voice shape
-{
-  code: 'en-US',
-  name: 'English (United States)'
-}
+/* Voice example:
+ * {
+ *   code: 'en-US',
+ *   name: 'English (United States)'
+ * }
+ */
 ```
 
 Download an audio clip:
@@ -55,7 +56,8 @@ const tts = require('google-translate-tts');
 const saveFile = async () => {
     const buffer = await tts.synthesize({
         text: 'Hello, world!',
-        voice: 'en-US'
+        voice: 'en-US',
+        slow: false // optional
     });
 
     fs.writeFileSync('hello-world.mp3', buffer);

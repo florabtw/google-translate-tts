@@ -10,7 +10,7 @@ const synthesize = (() => {
     path: "/_/TranslateWebserverUi/data/batchexecute",
   };
 
-  const body = ({ slow, text, voice }) => {
+  const body = ({ slow = false, text, voice }) => {
     const values = JSON.stringify([text, voice, slow ? true : null, "null"]);
     const data = JSON.stringify([[["jQ1olc", values, null, "generic"]]]);
     const params = new URLSearchParams({ "f.req": data });
