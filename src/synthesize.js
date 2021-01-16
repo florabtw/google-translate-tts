@@ -1,5 +1,36 @@
 const https = require("https");
 
+const token = (() => {
+  const request = () =>
+    new Promise((resolve, reject) => {
+      const req = https.request(
+        "https://translate.google.com/?hl=en&tab=TT",
+        (res) => {
+          let data = "";
+          res.on("data", (chunk) => (data = data + chunk));
+          res.on("end", () => resolve(data));
+        }
+      );
+      req.on("error", reject);
+      req.end();
+    });
+
+  const tokenMatch = /"SNlM0e":"([\w:]+)"/;
+
+  const get = async () => {
+    const html = await request();
+    console.log(html.split("\n")[0]);
+    const match = html.match(tokenMatch);
+
+    if (!match || !match.length)
+      throw new Error("No token found when parsing translate.google.com");
+
+    return match[0];
+  };
+
+  return { get };
+})();
+
 const synthesize = (() => {
   const options = {
     headers: {
@@ -10,10 +41,13 @@ const synthesize = (() => {
     path: "/_/TranslateWebserverUi/data/batchexecute",
   };
 
-  const body = ({ slow = false, text, voice }) => {
+  const body = ({ slow = false, text, token, voice }) => {
     const values = JSON.stringify([text, voice, slow ? true : null, "null"]);
     const data = JSON.stringify([[["jQ1olc", values, null, "generic"]]]);
-    const params = new URLSearchParams({ "f.req": data });
+    const params = new URLSearchParams({
+      "f.req": data,
+      ...(token && { at: token }),
+    });
     return params.toString();
   };
 
@@ -24,6 +58,7 @@ const synthesize = (() => {
         res.on("data", (chunk) => (data = data + chunk));
         res.on("end", () => resolve(data));
       });
+      console.log("body", body(opts));
       request.write(body(opts));
       request.on("error", reject);
       request.end();
@@ -50,7 +85,12 @@ const synthesize = (() => {
     return Buffer.from(dataArray[0], "base64");
   };
 
-  return (opts) => request(opts).then(toBuffer);
+  const synthesize = async ({ useToken = false, ...opts }) => {
+    const token_ = useToken && (await token.get());
+    return request({ token: token_, ...opts }).then(toBuffer);
+  };
+
+  return synthesize;
 })();
 
 module.exports = synthesize;
