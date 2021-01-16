@@ -1,5 +1,9 @@
 #!/bin/bash
 
+sample () {
+  node scripts/node/tts.js "Hello, world!" "en-US" "n" "y"
+}
+
 synthesize () {
   echo -n "text: "
   read text
@@ -10,7 +14,10 @@ synthesize () {
   echo -n "slow (y/N)? "
   read slow
 
-  node scripts/node/tts.js "$text" "$voice" "$slow"
+  echo -n "useCookies (y/N)? "
+  read useCookies
+
+  node scripts/node/tts.js "$text" "$voice" "$slow" "$useCookies"
 }
 
 # Begin Script
@@ -18,5 +25,6 @@ synthesize () {
 COMMAND=${1}
 
 case "$COMMAND" in
+  sample) sample;;
   synth) synthesize $@;;
 esac
