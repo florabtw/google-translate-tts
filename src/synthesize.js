@@ -11,7 +11,7 @@ const synthesize = (() => {
   };
 
   const body = ({ slow = false, text, voice }) => {
-    const values = JSON.stringify([text, voice, slow ? true : null, "null"]);
+    const values = JSON.stringify([text, voice.substring(0,2), slow ? true : null, "null"]);
     const data = JSON.stringify([[["jQ1olc", values, null, "generic"]]]);
     const params = new URLSearchParams({ "f.req": data });
     return params.toString();
