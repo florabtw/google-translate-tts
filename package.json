@@ -3,7 +3,7 @@
   "version": "0.3.0",
   "description": "Text-to-speech using Google Translate",
   "main": "src/index.js",
-  "repository": "https://github.com/ncpierson/google-translate-tts",
+  "repository": "https://github.com/florabtw/google-translate-tts",
   "author": "Flora Moon",
   "license": "MIT",
   "private": false,
