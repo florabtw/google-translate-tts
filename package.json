@@ -4,7 +4,7 @@
   "description": "Text-to-speech using Google Translate",
   "main": "src/index.js",
   "repository": "https://github.com/ncpierson/google-translate-tts",
-  "author": "Nick Pierson",
+  "author": "Flora Moon",
   "license": "MIT",
   "private": false,
   "devDependencies": {
