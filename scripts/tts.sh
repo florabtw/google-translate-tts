@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sample () {
-  node scripts/node/tts.js "Hello, world!" "en-US" "n" "y"
+  node scripts/node/tts.js "Hello, world!" "en" "com" "n" "y"
 }
 
 synthesize () {
@@ -11,13 +11,16 @@ synthesize () {
   echo -n "voice: "
   read voice
 
+  echo -n "accent: "
+  read accent
+
   echo -n "slow (y/N)? "
   read slow
 
   echo -n "useCookies (y/N)? "
   read useCookies
 
-  node scripts/node/tts.js "$text" "$voice" "$slow" "$useCookies"
+  node scripts/node/tts.js "$text" "$voice" "$accent" "$slow" "$useCookies"
 }
 
 # Begin Script
