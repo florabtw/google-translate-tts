@@ -12,7 +12,7 @@ synthesize () {
   read voice
 
   echo -n "accent: "
-  read voice
+  read accent
 
   echo -n "slow (y/N)? "
   read slow
