@@ -1,9 +1,9 @@
 const https = require("https");
 
 const cookie = (() => {
-  const get = () =>
+  const get = (tld) =>
     new Promise((resolve, reject) => {
-      const request = https.get("https://translate.google.com", (res) => {
+      const request = https.get(`https://translate.google.${tld}`, (res) => {
         const setCookies = res.headers["set-cookie"];
         const cookies = setCookies.map((sc) => sc.split(";")[0]);
         const cookieString = cookies.join("; ");
@@ -17,12 +17,12 @@ const cookie = (() => {
 })();
 
 const synthesize = (() => {
-  const options = (cookie) => ({
+  const options = (cookie, tld) => ({
     headers: {
       "content-type": "application/x-www-form-urlencoded",
       cookie,
     },
-    hostname: "translate.google.com",
+    hostname: `translate.google.${tld}`,
     method: "POST",
     path: "/_/TranslateWebserverUi/data/batchexecute",
   });
@@ -34,9 +34,9 @@ const synthesize = (() => {
     return params.toString();
   };
 
-  const request = ({ cookie = "", ...opts }) =>
+  const request = ({ cookie = "", accent = "com", ...opts }) =>
     new Promise((resolve, reject) => {
-      const request = https.request(options(cookie), (res) => {
+      const request = https.request(options(cookie, accent), (res) => {
         let data = "";
         res.on("data", (chunk) => (data = data + chunk));
         res.on("end", () => resolve(data));
@@ -68,7 +68,7 @@ const synthesize = (() => {
   };
 
   const synthesize = async ({ useCookies, ...opts }) => {
-    const cookie_ = useCookies ? await cookie.get() : "";
+    const cookie_ = useCookies ? await cookie.get(...opts) : "";
     return request({ cookie: cookie_, ...opts }).then(toBuffer);
   };
 

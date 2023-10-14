@@ -56,7 +56,8 @@ const tts = require('google-translate-tts');
 const saveFile = async () => {
     const buffer = await tts.synthesize({
         text: 'Hello, world!',
-        voice: 'en-US',
+        voice: 'en',
+        accent: 'com' // optional
         slow: false // optional
     });
 
